@@ -1,6 +1,21 @@
 # import socket programming library
 import socket
+import threading
 
+from docutils.nodes import address
+
+
+class Sever:
+    def __init__(self,HOST,PORT):
+        self.socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        self.socket.bind(HOST,PORT)
+        self.socket.listen()
+        print('Server is waiting for connection')
+        client_socket, address = self.socket.accept()
+        print('connected to' + str(address))
+        self.talk_to_client(client_socket)
+
+"""
 # import thread module
 from _thread import *
 import threading
@@ -62,3 +77,4 @@ def Main():
 
 if __name__ == '__main__':
     Main()
+"""
